@@ -1,0 +1,197 @@
+<div class="card">
+
+  <div class="row">
+    <div class="col-md-12">
+      <mat-card>
+        <h1 class="text-center">{{ title }} </h1>
+        <h2 class="text-center">Cuenta No. #{{idCuenta}} </h2>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<br>
+<div class="">
+  <div class="row">
+    <div class="col-md-12">
+      <mat-card>
+        <div class="modal-footer">
+          <button (click)='regresar()' style="border-radius: 10px;" class="btn btn-primary" type="submit">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <hr>
+  <!-- <div class="row">
+    <div class="col-md-12">
+      <mat-card>
+        <div class="modal-footer">
+          <button style="border-radius: 10px;" class="btn btn-primary" type="submit">
+            <a [routerLink]="['crearParcialidad']">
+              <span style="color:white;">
+                <i class="fa fa-plus"></i>
+                <span class="sm" >&nbsp; Nueva Parcialidad</span>
+              </span>
+            </a>
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </div> -->
+
+  <!--  -->
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Cambio de estado cuenta</h3>
+  <br>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+  
+          <div class="container">
+  
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-6">
+                <form [formGroup]="formCuenta">
+                  <div class="form-group">
+                    <label for="idCuenta">No. de Cuenta</label>
+                    <input type="number" class="form-control" formControlName="idCuenta" readonly placeholder="{{idCuenta}}">
+                  </div>
+                  <br>
+                  <div class="form-group">
+                    <label for="estadoActual">Estado Actual</label>
+                    <input type="text" class="form-control" formControlName="estadoActual" readonly placeholder="{{estadoActual}}">
+                  </div>
+                  <br>
+                  <div class="form-group">
+                    <label for="estadoNuevo">Estado Nuevo</label>
+                    <select formControlName="estadoNuevo" class="form-control">
+                      <option value="1">Cuenta Creada</option>
+                      <option value="2">Cuenta Abierta</option>
+                      <option value="3">Pesaje Iniciado</option>
+                      <option value="4">Pesaje Finalizado</option>
+                      <option value="5">Cuenta Cerrada</option>
+                      <option value="6">Cuenta Confirmada</option>
+                      <option value="7">Cuenta Rechazada</option>
+                    </select>
+                  </div>
+                  <!-- <div class="form-group">
+                    <label for="peso">* Peso Total Actual (Kg)</label>
+                    <input type="number" class="form-control" formControlName="peso"  placeholder="0 kg">
+
+
+                                        <select formControlName="estado" class="form-control">
+                      <option value="1">Activo</option>
+                      <option value="0">Inactivo</option>
+                    </select>
+                  </div> -->
+  
+                  <br>
+  
+                  <br>
+                </form>
+  
+              </div>
+  
+            </div>
+  
+  
+  
+            </div>
+  
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" (click)="actualizarEstadoCuenta()" [disabled]="!formValid()">Cambiar Estado</button>
+  
+          <button type="button" class="btn btn-secondary" (click)="resetear('cuenta')" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--  -->
+<div class="row">
+<div class="col-md-4">
+  <h2> &nbsp;&nbsp; <i class="fa fa-sticky-note"></i> &nbsp;&nbsp;Estado Actual: <strong style="color:green;">{{estadoActual}}</strong></h2> 
+</div>
+<div class="col-md">
+  <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Cambiar Estado</button>
+</div>
+</div>
+
+
+</div>
+<br><br>
+<div class="">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <form>
+
+                <table class="table table-striped table-hover">
+                  <thead>
+                    <tr class="table-secondary">
+                      <th scope="col" class="text-left">#</th>
+                      <th scope="col" class="text-left">Placa Transporte</th>
+                      <th scope="col" class="text-left">Nombre Transportista</th>
+                      <th scope="col" class="text-left">Peso (Kg)</th>
+                      <th scope="col" class="text-left">Peso Báscula (Peso Cabal SA)</th>
+                      <th scope="col" class="text-left">Fecha Recepcion Parcialidad</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <tr *ngIf="parcialidades?.length===0">
+                      <td colspan="7" class="text-center">
+                        No existen registros.
+                      </td>
+                    </tr>
+                    <tr *ngFor="let dato of parcialidades">
+                      <td>{{dato.idParcialidad}}</td>
+                      <td>{{dato.idTransporte.idTransporte}}</td>
+                      <td>{{dato.idTransportista.nombre}}</td>
+                      <td>{{dato.pesoEnviado}}</td>
+                      <td>{{dato.pesoBascula}}</td>
+                      <td>{{dato.fechaRecepcionParcialidad}}</td>
+                      <td>
+                        <div class="row">
+                        <div class="col-sm">
+                          <!-- <a href=""> -->
+                            <!-- AGREGAR UN MODAL CON LA INFO -->
+                            <a [routerLink]="['detalle-parcialidad', 1]">
+                            <span>
+                              <i class="fa fa-eye"></i>
+                              <span class="sm">&nbsp; Ver Detalle</span>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      </td>
+                      <!-- <th scope="row"> {{sol.no}} </th>
+                      <td>{{sol.noSolicitud}}</td>
+                      <td>{{sol.fechaSolicitud}}</td>
+                      <td>{{sol.nombreEntidad}}</td>
+                      <td>{{sol.nombreRepresentante}} </td>
+                      <td>{{sol.franquicia}} </td>
+                      <td>{{sol.estadoActual}}</td> -->
+                    </tr>
+                  </tbody>
+                </table>
+              <!-- </mat-tab>
+
+            </mat-tab-group>
+          </mat-card> -->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
