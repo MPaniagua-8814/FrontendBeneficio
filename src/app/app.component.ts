@@ -17,6 +17,7 @@ export class AppComponent {
 
     sessionStorage.setItem('nitAgricultor', "99671395")
     console.log("ruta === ", this.router.url)
+    console.log("local storage === ", localStorage)
 
   }
 
