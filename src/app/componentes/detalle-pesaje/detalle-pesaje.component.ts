@@ -28,7 +28,8 @@ export class DetallePesajeComponent implements OnInit {
 
   //para generar el QR
   profile="";
-  url=  this.router.url+'/info-qr/'  //"http://localhost:4200/bandeja-principal/detalle-pesaje/12/Cuenta%20Abierta";
+  //url=  this.router.url+'/info-qr/'  //"http://localhost:4200/bandeja-principal/detalle-pesaje/12/Cuenta%20Abierta";
+  url= 'https://frontend-beneficio-fje3kl50a-mpaniagua-8814.vercel.app/'+this.router.url+'/info-qr/'
   elementType=NgxQrcodeElementTypes.URL;
   errorCorrectionLevel="";
   value=this.url+this.profile;
