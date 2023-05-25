@@ -37,6 +37,9 @@ export class QrParcialidadComponent implements OnInit {
     // this.url = this.url + this.idParcialidad
     this.url2 = this.url2+this.idCuenta+'/'+this.estadoActual+'/info-qr/'+this.idParcialidad;  
 	this.url = this.url + this.idParcialidad
+    
+    console.log("url 1 ", url)
+    console.log("url 2 ", url2)
 
     //para validar que el usuario esté autenticado
     if (!this.authService.isAuthenticated()) {
