@@ -34,6 +34,11 @@ const routes: Routes = [
   path: 'bandeja-principal/detalle-pesaje/:idCuenta/:estadoActual/qr/:idParcialidad/info-qr/:idParcialidad', 
   component: InfoParcialidadQRComponent
 }
+  {  ////nueva ruta para ver detalle
+  //path: 'https://frontend-beneficio-fje3kl50a-mpaniagua-8814.vercel.app/bandeja-principal/detalle-pesaje/:idCuenta/:estadoActual/qr/:idParcialidad/info-qr/:idParcialidad', 
+  path: window.location.href+'bandeja-principal/detalle-pesaje/:idCuenta/:estadoActual/qr/:idParcialidad/info-qr/:idParcialidad', 
+  component: InfoParcialidadQRComponent
+}
 ,
 {
   path: 'bandeja-principal/detalle-pesaje/:idCuenta/:estadoActual/qr/:idParcialidad',
