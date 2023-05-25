@@ -9,13 +9,32 @@ import { BandejaPrincipalComponent } from './componentes/bandeja-principal/bande
 import { MaterialModule } from './utils/material-module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 //servicios
 import { ServiciosAgricultor } from './services/serviciosAgricultor.service';
 import { DetallePesajeComponent } from './componentes/detalle-pesaje/detalle-pesaje.component';
 import { CrearParcialidadComponent } from './componentes/crear-parcialidad/crear-parcialidad.component';
 
+
+////Seguridad
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthInterceptor } from './services/auth.interceptor';
+
 schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
+
+//QR
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { InfoParcialidadQRComponent } from './componentes/info-parcialidad-qr/info-parcialidad-qr.component';
+import { QrParcialidadComponent } from './componentes/qr-parcialidad/qr-parcialidad.component';
+
+
+//graficas
+import { NgxChartsModule } from '@swimlane/ngx-charts'
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -24,6 +43,8 @@ schemas: [CUSTOM_ELEMENTS_SCHEMA]
     BandejaPrincipalComponent,
     DetallePesajeComponent,
     CrearParcialidadComponent,
+    InfoParcialidadQRComponent,
+    QrParcialidadComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,9 +55,23 @@ schemas: [CUSTOM_ELEMENTS_SCHEMA]
     HttpClientModule,
     //HttpClient
     // MaterialModule
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['*'], // Reemplaza con tu dominio o utiliza '*' para todos los dominios
+        disallowedRoutes: [], // Rutas excluidas de enviar el token
+      }
+    }),
+    NgxQRCodeModule,
+    NgxChartsModule
   ],
   providers: [
-    ServiciosAgricultor
+    ServiciosAgricultor,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

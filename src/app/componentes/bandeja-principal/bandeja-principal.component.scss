@@ -19,3 +19,20 @@ select {
     font-size: 1.1em;
     font-weight: bold;
 }
+
+.title{
+  padding: 0.5rem 0.5rem;
+  background-color: var(--bs-table-bg);
+  border-bottom-width: var(--bs-border-width);
+  box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+}
+
+
+.select2{
+  margin-right: 140px;
+}
+
+
+.fecha{
+  margin-right: 40px;
+}

@@ -68,7 +68,7 @@
 
   .content {
     display: flex;
-    margin: 82px auto 32px;
+    margin: 82px auto 0px;
     padding: 0 16px;
     max-width: 960px;
     flex-direction: column;
@@ -314,6 +314,9 @@
   <span style="color:white;font-size: 1.5em;">Sistema Beneficio</span>
     <div class="spacer"></div>
 
+    <a href="" *ngIf="mostrar()" (click)="cerrarSesion()" style="color:white; font-size:1.3em">
+      <i class="fa fa-times-rectangle"></i>&nbsp; Cerrar Sesión &nbsp;&nbsp;&nbsp;
+    </a>
 </div>
 
 <div class="content" role="main">

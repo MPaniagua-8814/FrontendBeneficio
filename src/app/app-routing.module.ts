@@ -4,6 +4,8 @@ import { LoginComponent } from './componentes/login/login.component';
 import { BandejaPrincipalComponent } from './componentes/bandeja-principal/bandeja-principal.component';
 import { DetallePesajeComponent } from './componentes/detalle-pesaje/detalle-pesaje.component';
 import { CrearParcialidadComponent } from './componentes/crear-parcialidad/crear-parcialidad.component';
+import { InfoParcialidadQRComponent } from './componentes/info-parcialidad-qr/info-parcialidad-qr.component';
+import { QrParcialidadComponent } from './componentes/qr-parcialidad/qr-parcialidad.component';
 
 const routes: Routes = [
 
@@ -26,6 +28,15 @@ const routes: Routes = [
 {
   path: 'bandeja-principal/detalle-pesaje/:idCuenta/crearParcialidad',
   component: CrearParcialidadComponent
+},
+{
+  path: 'bandeja-principal/detalle-pesaje/:idCuenta/:estadoActual/info-qr/:idParcialidad',
+  component: InfoParcialidadQRComponent
+}
+,
+{
+  path: 'bandeja-principal/detalle-pesaje/:idCuenta/:estadoActual/qr/:idParcialidad',
+  component: QrParcialidadComponent
 }
 
 ];

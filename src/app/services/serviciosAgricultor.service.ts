@@ -13,7 +13,7 @@ export class ServiciosAgricultor {
   
   _url = 'https://beneficio-cafetito-ws.herokuapp.com';
   header = new HttpHeaders().set('Type-content', 'application/json')
-  nitTemporal = "99671395";
+  // nitTemporal = "99671395";
 
   constructor(private http: HttpClient) {
 
@@ -27,10 +27,10 @@ export class ServiciosAgricultor {
     return this.http.get(this._url+'/beneficio/farmer/listar', { headers: header});
   }
 
-  obtenerPesajesPorNit(nit: number) {
+  obtenerPesajesPorNit(nit: string) {
 
 
-    return this.http.get(environment.rutaMicros+"/beneficio/count/agricultor/"+this.nitTemporal, { headers: this.header})
+    return this.http.get(environment.rutaMicros+"/beneficio/count/agricultor/"+nit, { headers: this.header})
   
   }
 
@@ -98,11 +98,11 @@ export class ServiciosAgricultor {
 
   }
 
-  actualizarTransporte(placa:string, variables:any){   /////beneficio
+  actualizarTransporte(placa:string, variables:any): Observable<any>{   /////beneficio
     return this.http.put(environment.rutaMicros+"/beneficio/updateTransport/"+placa , variables) ///, { headers: this.header})
   }
 
-  actualizarTransportista(cui:number, variables:any){   /////beneficio
+  actualizarTransportista(cui:number, variables:any): Observable<any>{   /////beneficio
     return this.http.put(environment.rutaMicros+"/beneficio/updateCarrier/"+cui , variables) ///, { headers: this.header})
   }
 
@@ -112,4 +112,32 @@ export class ServiciosAgricultor {
       console.log("que devuelve=== " ,data)
     }) ///, { headers: this.header})
   }
+
+  cambiarEstadoCuenta( accion: any, idCuenta: any, variables:any):Observable<any>{  ///beneficio/state/confirmed/account/
+    if(accion=='confirmar'){
+      return this.http.put(environment.rutaMicros+"/beneficio/state/confirmed/account/"+idCuenta , variables)
+    }
+    else{
+      return this.http.put(environment.rutaMicros+"/beneficio/state/close/account/"+idCuenta , variables)
+    }
+
+  }
+
+
+  recibirParcialidad(variables:any): Observable<any>{ 
+    return this.http.put(environment.rutaMicros+"/beneficio/income/parts" , variables)
+  }
+
+  rechazarParcialidad(variables:any): Observable<any>{ 
+    return this.http.put(environment.rutaMicros+"/beneficio/decline/part" , variables)
+  }
+
+  obtenerParcialidadPorId(idParcialidad:any){
+    return this.http.get(environment.rutaMicros+"/beneficio/part/detail/"+idParcialidad, { headers: this.header})
+  }
+
+  obtenerCuentaPorId(idCuenta : any){
+    return this.http.get(environment.rutaMicros+"/beneficio/count/detail/"+idCuenta, { headers: this.header})
+  }
+
 }

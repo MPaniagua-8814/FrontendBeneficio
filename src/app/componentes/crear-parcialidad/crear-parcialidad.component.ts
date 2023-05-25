@@ -40,7 +40,7 @@ export class CrearParcialidadComponent implements OnInit {
 
   regresar(){
 
-    location.href = 'bandeja-principal/detalle-pesaje/'+this.idPesaje
+    location.href = 'bandeja-principal/detalle-pesaje/'+this.idPesaje  ////es idcuenta
   }
 
   obtenerTransportistas(){

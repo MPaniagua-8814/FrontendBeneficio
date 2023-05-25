@@ -1,0 +1,78 @@
+<div class="card">
+
+    <div class="row">
+        <div class="col-md-12">
+        <mat-card>
+            <h1 class="text-center"><i class="fa fa-address-card"></i> {{ title }} </h1>
+        </mat-card>
+        </div>
+    </div>
+</div>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <mat-card>
+          <div class="modal-footer">
+            <button (click)='regresar()' style="border-radius: 10px;" class="btn btn-primary" type="submit">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar
+            </button>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+
+    <div >
+        <!-- <div class="modal fade" id="modalQR" tabindex="-1" role="modal" aria-labelledby="modalQRLabel" aria-hidden="false"> -->
+        <div>
+            <!-- <div class="modal-dialog modal-sm" role="document"> -->
+          <div >
+            <!-- <div >
+              <h3 class="modal-title" id="modalQRLabel">Información parcialidad</h3>
+      <br>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div> -->
+            <br>
+            <div class="">
+      
+              <div class="container">
+      
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                      <form>
+                      <div class="form-group">
+                        <label >No. de Cuenta</label>
+                        <input type="text"  class="form-control" readonly placeholder="{{idCuenta}}">
+                      </div>
+                      <br>
+                      <div class="form-group">
+                        <label >ID Parcialidad</label>
+                        <input type="text"  class="form-control" readonly placeholder="{{idParcialidad}}">
+                      </div>
+                      <br>
+                      <ngx-qrcode class="qrcode"
+                      [elementType]="elementType"
+                      [value]="url">
+                      <!-- [value]="url+'/'+dato.idParcialidad"> -->
+                      </ngx-qrcode>
+                      <a href="{{url}}"> <i class="fa fa-share"></i> IR</a>
+                      <!-- <a href="{{url+dato.idParcialidad}}"> <i class="fa fa-share"></i> IR</a> -->
+                      <br>
+                    </form>
+                  </div>
+                </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+          </div>
+        </div>
+      </div>    
+
+
+
+  </div>
