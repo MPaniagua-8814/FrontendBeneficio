@@ -29,8 +29,8 @@ const routes: Routes = [
   path: 'bandeja-principal/detalle-pesaje/:idCuenta/crearParcialidad',
   component: CrearParcialidadComponent
 },
-{
-  path: 'bandeja-principal/detalle-pesaje/:idCuenta/:estadoActual/qr/:idParcialidad/info-qr/:idParcialidad', 
+{  ////nueva ruta para ver detalle
+  path: 'https://frontend-beneficio-fje3kl50a-mpaniagua-8814.vercel.app/bandeja-principal/detalle-pesaje/:idCuenta/:estadoActual/qr/:idParcialidad/info-qr/:idParcialidad', 
   component: InfoParcialidadQRComponent
 }
 ,
