@@ -92,6 +92,8 @@ export class DetallePesajeComponent implements OnInit {
     if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']);
     }
+	
+	console.log("que hay en ruta === " , this.url)
 
   }
 
