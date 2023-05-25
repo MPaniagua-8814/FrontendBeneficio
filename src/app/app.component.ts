@@ -19,6 +19,8 @@ export class AppComponent {
     console.log("ruta === ", this.router.url)
     console.log("local storage === ", localStorage)
     console.log("ruta con href === " , window.location.href)
+    
+    sessionStorage.setItem("ruta", window.location.href)
 
   }
 
