@@ -30,7 +30,7 @@ const routes: Routes = [
   component: CrearParcialidadComponent
 },
 {
-  path: 'bandeja-principal/detalle-pesaje/:idCuenta/:estadoActual/qr/:idParcialidad/info-qr/:idParcialidad',
+  path: 'bandeja-principal/detalle-pesaje/:idCuenta/:estadoActual/qr/:idParcialidad/info-qr/:idParcialidad', 
   component: InfoParcialidadQRComponent
 }
 ,
