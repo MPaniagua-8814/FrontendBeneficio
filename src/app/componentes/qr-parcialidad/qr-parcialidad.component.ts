@@ -21,7 +21,12 @@ export class QrParcialidadComponent implements OnInit {
     estadoActual:any;
     idParcialidad:any;
     
-    url: any = 'https://frontend-beneficio-fje3kl50a-mpaniagua-8814.vercel.app'+this.router.url+'/info-qr/'+this.route.snapshot.paramMap.get('idParcialidad')
+    //https://frontend-beneficio-fje3kl50a-mpaniagua-8814.vercel.app/bandeja-principal/detalle-pesaje/6/Cuenta Creada/qr/12/info-qr/12
+
+    // url = '/bandeja-principal/detalle-pesaje/'+this.route.snapshot.paramMap.get("idCuenta")+'/'+this.route.snapshot.paramMap.get("estadoActual")+'/qr/'+this.route.snapshot.paramMap.get('idParcialidad')+'/info-qr/'+this.route.snapshot.paramMap.get('idParcialidad')
+    url = 'https://frontend-beneficio-fje3kl50a-mpaniagua-8814.vercel.app/bandeja-principal/detalle-pesaje/'+this.route.snapshot.paramMap.get("idCuenta")+'/'+this.route.snapshot.paramMap.get("estadoActual")+'/qr/'+this.route.snapshot.paramMap.get('idParcialidad')+'/info-qr/'+this.route.snapshot.paramMap.get('idParcialidad')
+    
+   
     value=this.url+this.profile;
 
     constructor( private servicios: ServiciosAgricultor, private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
@@ -33,7 +38,8 @@ export class QrParcialidadComponent implements OnInit {
     this.idCuenta = Number(this.route.snapshot.paramMap.get("idCuenta"));
     this.estadoActual = this.route.snapshot.paramMap.get("estadoActual");
 
-
+    // this.url = this.url + this.idParcialidad
+    // this.url = 'adios'//this.url+this.idCuenta+'/'+this.estadoActual+'/info-qr/'+this.idParcialidad;  
 
     //para validar que el usuario esté autenticado
     if (!this.authService.isAuthenticated()) {
