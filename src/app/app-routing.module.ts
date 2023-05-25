@@ -30,7 +30,8 @@ const routes: Routes = [
   component: CrearParcialidadComponent
 },
 {  ////nueva ruta para ver detalle
-  path: 'https://frontend-beneficio-fje3kl50a-mpaniagua-8814.vercel.app/bandeja-principal/detalle-pesaje/:idCuenta/:estadoActual/qr/:idParcialidad/info-qr/:idParcialidad', 
+  //path: 'https://frontend-beneficio-fje3kl50a-mpaniagua-8814.vercel.app/bandeja-principal/detalle-pesaje/:idCuenta/:estadoActual/qr/:idParcialidad/info-qr/:idParcialidad', 
+  path: 'bandeja-principal/detalle-pesaje/:idCuenta/:estadoActual/qr/:idParcialidad/info-qr/:idParcialidad', 
   component: InfoParcialidadQRComponent
 }
 ,
