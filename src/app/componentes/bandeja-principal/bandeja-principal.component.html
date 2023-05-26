@@ -125,7 +125,7 @@
                     <!--                     <th scope="col" class="text-left">#</th>-->
                     <th scope="col" class="text-left">No. Cuenta</th>
                     <th scope="col" class="text-left">Agricultor</th>
-                    <th scope="col" class="text-left">Peso Total (KG)</th>
+                    <th scope="col" class="text-left">Peso Total</th>
                     <th scope="col" class="text-left">Cant. parcialidades</th>
                     <th scope="col" class="text-left">Fecha Envío</th>
                     <th scope="col" class="text-left">Estado</th>
@@ -143,7 +143,7 @@
                     <!--<td>{{dato.idCuenta}}</td>-->
                     <td>{{dato.idCuenta}}</td>
                     <td>{{dato.nitAgricultor.nombre}}</td>
-                    <td>{{dato.pesoEnviado}} kg</td>
+                    <td>{{dato.pesoEnviado}} {{dato.medidaPeso.nombre}}</td>
                     <td>{{ dato.totalParcialidades }}</td>
                     <td>{{formatoFecha(dato.fechaCreacion)}}</td>
                     <td>{{dato.idEstado.nombre}}</td>
