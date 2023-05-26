@@ -586,22 +586,7 @@
       </div>
 
 
-      <div class="col-md-4">
-        <label class="form-label" for="datatable-search-input">Filtrar por Estado</label>
-        <div class="input-group">
-          <form [formGroup]="formEstadoAgricultor">
-            <!-- <input formControlName="estado" type="text" class="form-control" id="datatable-search-input"> -->
-            <select formControlName="estado" class="form-control select2" placeholder="escribe algo">
-              <option value="true">Activo</option>
-              <option value="false">Inactivo</option>
-            </select>
-          </form>
-          <div class="input-group-append">
-            <button class="btn btn-primary" [disabled]="!formEstadoAgricultor.valid"
-              (click)="buscarAgricultoresEstado()" type="button">Buscar</button>
-          </div>
-        </div>
-      </div>
+      
 
       <div class="col-md-1"></div>
       <div class="col-md">
@@ -738,7 +723,7 @@
 
                     <th scope="col" class="text-left">Nit</th>
                     <th scope="col" class="text-left">Nombre</th>
-                    <th scope="col" class="text-left">Dirección</th>
+                    <th scope="col" class="text-left">Observaciones</th>
                     <th scope="col" class="text-left">Fecha Creación</th>
                     <th></th>
                   </tr>
@@ -753,7 +738,7 @@
                   <tr *ngFor="let dato of agricultores">
                     <td>{{dato.nitAgricultor}}</td>
                     <td> {{dato.nombre}} </td>
-                    <td>{{ estado(dato.activo) }}</td>
+                    <td>{{ dato.observaciones }}</td>
                     <td>{{ formatoFecha(dato.fecha) }}</td>
                     <!-- <td>
                         <div class="row">
