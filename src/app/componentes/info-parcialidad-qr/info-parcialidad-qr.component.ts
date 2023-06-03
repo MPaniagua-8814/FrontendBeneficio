@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ServiciosAgricultor } from 'src/app/services/serviciosAgricultor.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-info-parcialidad-qr',
