@@ -19,6 +19,8 @@ export class InfoParcialidadQRComponent implements OnInit {
   idParcialidad:any;
   transporte:any;
   transportista: any;
+  usuarioActual: any;
+  dataParcialidad: any;
 
   constructor( private servicios: ServiciosAgricultor, private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
 
@@ -48,6 +50,7 @@ export class InfoParcialidadQRComponent implements OnInit {
       resp =>{
         console.log("respuesta", resp)
         // this.transportistas = resp;
+        this.dataParcialidad = resp;
         this.parcialidad=  resp;
         this.transporte = this.parcialidad.idTransporte
         this.transportista = this.parcialidad.idTransportista
@@ -59,6 +62,102 @@ export class InfoParcialidadQRComponent implements OnInit {
 
     return (estadoActual==true? 'Activo' : 'Inactivo')
 
+  }
+  
+    accionParcialidad(accion:string, idParcialidad:number){
+
+    if(accion=='Confirmar'){
+
+      let variables = {
+        "idCuenta": this.idCuenta,
+        "idParcialidad": idParcialidad,
+        "usuarioModifico": this.usuarioActual
+      }
+      console.log("datos para confirmar=== " , variables)
+
+      this.servicios.recibirParcialidad(variables).toPromise().then(
+        data =>{
+          // this.mensajeExito()
+        }
+      ).catch(err => {
+        console.log("estado al error ===== " , err.status)
+        console.log("entra al error ===== " , err)
+        if(err.status == 200 || err.status == 201){
+          this.mensajeConfirmarParcialidad('recibida')
+          sessionStorage.setItem('estadoCuenta',  'Cuenta Abierta')
+        }
+        else{
+          this.mostrarMensajeError(err.error)
+        }
+      });
+    }
+    else if( accion= 'Rechazar'){
+      console.log("se rechaza") ///
+
+      let variables = {
+        "id": idParcialidad,
+        "comentario": "Se rechaza",
+        "usuarioAgrego": this.usuarioActual
+      }
+
+      this.servicios.rechazarParcialidad(variables).toPromise().then(
+        data =>{
+          console.log("que hay en data === " , data)
+          console.log("que hay en variables === " , variables)
+          // this.mensajeExito()
+        }
+      ).catch(err => {
+        console.log("estado al error ===== " , err.status)
+        console.log("entra al error ===== " , err)
+        if(err.status == 200 || err.status == 201){
+          this.mensajeConfirmarParcialidad('rechazada')
+          sessionStorage.setItem('estadoCuenta',  'Cuenta Abierta')
+        }
+        else{
+          this.mostrarMensajeError(err.error)
+        }
+      });
+
+    }
+
+  }
+
+  mostrarMensajeError(texto:any){
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: texto,
+      // footer: '<a href="">Why do I have this issue?</a>'
+    }).then((result)=>{
+      location.href = 'bandeja-principal/detalle-pesaje/'+this.idCuenta+'/'+this.estadoActual
+
+    })
+    // .then((result) => {
+    //   location.href = 'bandeja-principal/detalle-pesaje/'+this.idPesaje+'/'+this.idCuenta
+    // });
+    
+  }
+
+  mensajeConfirmarParcialidad(accion:any){
+    let texto ;
+    if(accion == 'recibida'){
+      texto = "Se confirma la recepción de la parcialidad"
+    }
+    else{
+      texto = "Se rechaza la parcialidad"
+    }
+    Swal.fire({
+      title: texto,
+      icon: 'success',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      html: 'Se actualizó con éxito',
+    }).then((result) => {
+      // location.reload()
+    location.href = 'bandeja-principal/detalle-pesaje/'+this.idCuenta+'/'+this.estadoActual
+      // location.href = 'bandeja-principal'
+  });
   }
 
 }
